@@ -19,5 +19,7 @@
   <dimen name="function_bar_textsize">12px</dimen>
   <dimen name="item_height">16px</dimen>
   <dimen name="linespacing">0px</dimen>
+  <dimen name="left_margin"> 2px</dimen>
   <item name="spacingMul" type="dimen" format="float">1.0</item>
+
 </resources>

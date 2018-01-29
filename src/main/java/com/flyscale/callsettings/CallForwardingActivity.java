@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 public class CallForwardingActivity extends Activity {
 
-    private static final String TAG = "MainActivity";
-    private ListView mMainTree;
-    private String[] mMainData;
-    private MainTreeAdapter mMainTreeAdapter;
+    private static final String TAG = "CallForwardingActivity";
+    private ListView mCallForwardTree;
+    private String[] mCallForwardData;
+    private CallForwardingTreeAdapter mCallForwardingTreeAdapter;
     private Class[] mActivities;
 
     @Override
@@ -29,8 +29,14 @@ public class CallForwardingActivity extends Activity {
     }
 
     private void initData() {
-        mMainData = getResources().getStringArray(R.array.main);
-        mActivities = new Class[mMainData.length];
+        mCallForwardData = getResources().getStringArray(R.array.call_forwarding);
+        mActivities = new Class[mCallForwardData.length];
+        mActivities[0] = ForWardAll.class;
+        mActivities[1] = ForWardBusy.class;
+        mActivities[2] = ForwardNoReply.class;
+        mActivities[3] = ForwardReach.class;
+        mActivities[4] = ForwardCancelAll.class;
+
     }
 
     @Override
@@ -39,14 +45,15 @@ public class CallForwardingActivity extends Activity {
     }
 
     private void initView() {
-        mMainTree = (ListView) findViewById(R.id.main);
-        mMainTreeAdapter = new MainTreeAdapter();
-        mMainTree.setAdapter(mMainTreeAdapter);
+        mCallForwardTree = (ListView) findViewById(R.id.main);
+        mCallForwardTree.setVerticalScrollBarEnabled(false);
+        mCallForwardingTreeAdapter = new CallForwardingTreeAdapter();
+        mCallForwardTree.setAdapter(mCallForwardingTreeAdapter);
         TextView title = (TextView) findViewById(R.id.title);
-        title.setText(getResources().getString(R.string.app_name));
+        title.setText(getResources().getString(R.string.call_forwarding_settings));
 
-        mMainTree.setDivider(null);
-        mMainTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mCallForwardTree.setDivider(null);
+        mCallForwardTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CallForwardingActivity.this, mActivities[position]);
@@ -59,7 +66,7 @@ public class CallForwardingActivity extends Activity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_MENU:
-                int selectedItemPosition = mMainTree.getSelectedItemPosition();
+                int selectedItemPosition = mCallForwardTree.getSelectedItemPosition();
                 Intent intent = new Intent(CallForwardingActivity.this, mActivities[selectedItemPosition]);
                 startActivityForResult(intent, selectedItemPosition);
                 return true;
@@ -67,30 +74,30 @@ public class CallForwardingActivity extends Activity {
         return super.onKeyUp(keyCode, event);
     }
 
-    class MainTreeAdapter extends BaseAdapter {
+    class CallForwardingTreeAdapter extends BaseAdapter {
 
-        public MainTreeAdapter() {
+        public CallForwardingTreeAdapter() {
         }
 
         @Override
         public int getCount() {
-            return mMainData.length;
+            return mCallForwardData.length;
         }
 
         @Override
         public String getItem(int position) {
-            return mMainData[position % mMainData.length];
+            return mCallForwardData[position % mCallForwardData.length];
         }
 
         @Override
         public long getItemId(int position) {
-            return position % mMainData.length;
+            return position % mCallForwardData.length;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView item = (TextView) getLayoutInflater().inflate(R.layout.item, parent, false);
-            item.setText(mMainData[position % mMainData.length]);
+            item.setText(mCallForwardData[position % mCallForwardData.length]);
             return item;
         }
     }
