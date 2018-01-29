@@ -51,6 +51,12 @@
     <string name="speed_dial">SpeedDial</string>
     <string name="exit">Exit</string>
 
+    <string name="quest_status">Status</string>
+    <string name="call_waiting">Call Waiting</string>
+    <string name="active">Active</string>
+    <string name="inactive">InActive</string>
+    <string name="under_questuing">Questing</string>
+
     <array name="main">
         <item>1.Call Forwarding</item>
         <item>2.Call Waiting</item>
@@ -58,6 +64,21 @@
         <item>4.Hide ID</item>
         <item>5.Delay to Dial</item>
         <item>6.IP Shortcut ey</item>
+    </array>
+
+    <array name="openclose">
+        <item>Activate</item>
+        <item>Deactivate</item>
+        <item>Check status</item>
+    </array>
+
+    <array name="call_block">
+        <item>1.All Made calls</item>
+        <item>2.All Received calls</item>
+        <item>3.Receive calls in Roaming</item>
+        <item>4.International calls</item>
+        <item>5.Make Calls in Roaming</item>
+        <item>6.Cancel all Blocks</item>
     </array>
 
 </resources>

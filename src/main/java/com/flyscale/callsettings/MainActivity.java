@@ -11,10 +11,13 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import global.Constant;
+
 
 public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
+    private static final int SET_CALL_WAITING = 1000;
     private ListView mMainTree;
     private String[] mMainData;
     private MainTreeAdapter mMainTreeAdapter;
@@ -32,7 +35,7 @@ public class MainActivity extends Activity {
         mMainData = getResources().getStringArray(R.array.main);
         mActivities = new Class[mMainData.length];
         mActivities[0] = CallForwardingActivity.class;
-        mActivities[1] = CallWaitingActivity.class;
+        mActivities[1] = OpenCloseActivity.class;
         mActivities[2] = CallBlockingActivity.class;
     }
 
@@ -52,19 +55,40 @@ public class MainActivity extends Activity {
         mMainTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, mActivities[position]);
-                startActivityForResult(intent, position);
+                handleOptions(position);
             }
         });
+    }
+
+    private void handleOptions(int position) {
+//        if (position == 1) {
+//            Intent intent = new Intent(Intent.ACTION_CALL);
+//            intent.setData(Uri.parse("tel:*%2343%23"));
+//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !=
+//                    PackageManager.PERMISSION_GRANTED) {
+//                return;
+//            }
+//            startActivity(intent);
+////            Intent intent = new Intent();
+////            ComponentName componentName = new ComponentName("com.android.phone", "com" +
+////                    ".android.phone.OpenCloseActivity");
+////            intent.setComponent(componentName);
+////            startActivityForResult(intent, SET_CALL_WAITING);
+//            return;
+//        }
+        Intent intent = new Intent(MainActivity.this, mActivities[position]);
+        if (position == 1) {
+            intent.putExtra(Constant.GSM_TYPE, Constant.GSM_CALL_WAITING);
+        }
+        startActivityForResult(intent, position);
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_MENU:
-                int selectedItemPosition = mMainTree.getSelectedItemPosition();
-                Intent intent = new Intent(MainActivity.this, mActivities[selectedItemPosition]);
-                startActivityForResult(intent, selectedItemPosition);
+                int position = mMainTree.getSelectedItemPosition();
+                handleOptions(position);
                 return true;
         }
         return super.onKeyUp(keyCode, event);
