@@ -56,6 +56,13 @@
     <string name="active">Active</string>
     <string name="inactive">InActive</string>
     <string name="under_questuing">Questing</string>
+    <string name="call_forwarding_settings">Forwarding</string>
+    <string name="call_forwarding_all">Forward All</string>
+    <string name="call_forwarding_busy">Forward if busy</string>
+    <string name="call_forwarding_no_reply">Call forwarding on no reply</string>
+    <string name="out_of_reach">Out of Reach</string>
+    <string name="cancel_all">Cancel all</string>
+
 
     <array name="main">
         <item>1.Call Forwarding</item>
@@ -66,7 +73,15 @@
         <item>6.IP Shortcut ey</item>
     </array>
 
-    <array name="openclose">
+    <array name="call_forwarding">
+        <item>1.Forward All</item>
+        <item>2.Forward if busy</item>
+        <item>3.Call forwarding on no reply</item>
+        <item>4.Out of Reach</item>
+        <item>5.Cancel all</item>
+    </array>
+
+    <array name="open_close">
         <item>Activate</item>
         <item>Deactivate</item>
         <item>Check status</item>

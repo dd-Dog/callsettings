@@ -3,6 +3,8 @@
           package="com.flyscale.callsettings">
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +24,23 @@
         <activity android:name=".OpenCloseActivity"/>
         <activity android:name=".StatusActivity"/>
         <activity android:name=".SetCallWaitingActivity"/>
+        <activity android:name=".ForwardCancelAll"/>
+        <activity android:name=".ForwardReach"/>
+        <activity android:name=".ForwardNoReply"/>
+        <activity android:name=".ForWardBusy"/>
+        <activity android:name=".ForWardAll"/>
+        <activity android:name=".ForwardAllOpen"/>
+        <activity android:name=".ForwardAllClose"/>
+        <activity android:name=".ForwardAllStatus"/>
+        <activity android:name=".ForwardBusyOpen"/>
+        <activity android:name=".ForwardBusyClose"/>
+        <activity android:name=".ForwardBusyStatus"/>
+        <activity android:name=".ForwardNoReplyOpen"/>
+        <activity android:name=".ForwardNoReplyClose"/>
+        <activity android:name=".ForwardNoReplyStatus"/>
+        <activity android:name=".ForwardReachOpen"/>
+        <activity android:name=".ForwardReachClose"/>
+        <activity android:name=".ForwardReachStatus"/>
     </application>
 
 </manifest>

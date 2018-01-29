@@ -1,6 +1,7 @@
 package com.flyscale.callsettings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -18,6 +19,7 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
     private static final int SET_CALL_WAITING = 1000;
+    private Context mContext = this;
     private ListView mMainTree;
     private String[] mMainData;
     private MainTreeAdapter mMainTreeAdapter;
@@ -27,6 +29,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initData();
         initView();
     }
@@ -46,6 +49,7 @@ public class MainActivity extends Activity {
 
     private void initView() {
         mMainTree = (ListView) findViewById(R.id.main);
+        mMainTree.setVerticalScrollBarEnabled(false);
         mMainTreeAdapter = new MainTreeAdapter();
         mMainTree.setAdapter(mMainTreeAdapter);
         TextView title = (TextView) findViewById(R.id.title);
