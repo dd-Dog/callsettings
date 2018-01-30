@@ -1,4 +1,4 @@
-package global;
+package com.flyscale.callsettings.global;
 
 /**
  * Created by MrBian on 2018/1/29.

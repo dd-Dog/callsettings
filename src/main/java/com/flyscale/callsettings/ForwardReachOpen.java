@@ -60,14 +60,19 @@ public class ForwardReachOpen extends Activity{
         switch (keyCode){
             case 82:
             case 23:
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_CALL);
-                intent.setData(Uri
-                        .parse("tel:**62*" + mNumber + "%23"));
-                editor.putString("forward_reach_open", mNumber);
-                editor.commit();
-                startActivity(intent);
-                finish();
+                if (mNumber != null && mNumber.length() > 0){
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_CALL);
+                    intent.setData(Uri
+                            .parse("tel:**62*" + mNumber + "%23"));
+                    editor.putString("forward_reach_open", mNumber);
+                    editor.commit();
+                    startActivity(intent);
+                    finish();
+                }else {
+                    SimCardState.showToastString(ForwardReachOpen.this , "号码不能为空");
+                }
+
                 return true;
         }
         return super.onKeyUp(keyCode, event);

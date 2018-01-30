@@ -1,8 +1,14 @@
 package com.flyscale.callsettings;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Administrator on 2018/1/19 0019.
@@ -31,5 +37,16 @@ public class SimCardState {
         }
         Log.e(TAG, result ? "有SIM卡" : "无SIM卡");
         return result;
+    }
+
+    public static void showToastString(Context context, String info){
+        Toast toast = Toast.makeText( context,info,Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.FILL,0,0);
+        LinearLayout layout = (LinearLayout) toast.getView();
+        layout.setBackgroundColor(Color.BLACK);
+        TextView textView = (TextView) toast.getView().findViewById(android.R.id.message);
+        textView.setTextColor(Color.WHITE);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,12);
+        toast.show();
     }
 }

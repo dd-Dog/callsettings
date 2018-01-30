@@ -68,7 +68,11 @@
     <string name="call_forwarding_busy_number">设置遇忙转移号码</string>
     <string name="call_forwarding_no_reply_number">设置无人接听转移号码</string>
     <string name="call_forwarding_reach_number">设置无法到达转移号码</string>
-    <string name="yes_no_cancel_all">是否取消全部转移</string>
+    <string name="yes_no_cancel_all">是否关闭全部转移？</string>
+    <string name="yes_no_call_forwarding_all">是否关闭无条件转移？</string>
+    <string name="yes_no_call_forwarding_busy">是否关闭遇忙转移？</string>
+    <string name="yes_no_call_forwarding_no_reply">是否关闭无应答转移？</string>
+    <string name="yes_no_out_of_reach">是否关闭无法到达转移？</string>
     <string name="setting">设置中...</string>
     <string name="no_simcard">请先插入SIM卡</string>
     <string name="delay_to_dial">延时拨号</string>
