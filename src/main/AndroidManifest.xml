@@ -42,6 +42,14 @@
         <activity android:name=".ForwardReachClose"/>
         <activity android:name=".ForwardReachStatus"/>
         <activity android:name=".NoSimCardActivity"/>
+        <activity android:name=".DelayToDialActivity"/>
+        <activity android:name=".IPShortCutActivity"/>
+
+        <receiver android:name=".receiver.PhoneStateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

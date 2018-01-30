@@ -71,14 +71,17 @@
     <string name="yes_no_cancel_all">是否取消全部转移</string>
     <string name="setting">设置中...</string>
     <string name="no_simcard">请先插入SIM卡</string>
+    <string name="delay_to_dial">延时拨号</string>
+
+    <string name="ip_shortcut">IP拨号</string>
 
     <array name="main">
         <item>1.呼叫转移</item>
         <item>2.呼叫等待</item>
-        <item>3.通话限制</item>
-        <item>4.隐藏本机号码</item>
-        <item>5.延时拨号</item>
-        <item>6.IP—键通</item>
+        <!--<item>3.通话限制</item>-->
+        <!--<item>4.隐藏本机号码</item>-->
+        <item>3.延时拨号</item>
+        <item>4.IP—键通</item>
     </array>
 
 
@@ -104,4 +107,22 @@
         <item>5.国际漫游呼出</item>
         <item>6.取消全部限制</item>
     </array>
+
+    <string-array name="delaytodial">
+        <item>关闭</item>
+        <item>3秒</item>
+        <item>5秒</item>
+        <item>7秒</item>
+        <item>9秒</item>
+    </string-array>
+
+    <string-array name="ipshortcuts">
+        <item>关闭</item>
+        <item>17951</item>
+        <item>17911</item>
+        <item>17909</item>
+        <item>17931</item>
+        <item>193</item>
+    </string-array>
+
 </resources>

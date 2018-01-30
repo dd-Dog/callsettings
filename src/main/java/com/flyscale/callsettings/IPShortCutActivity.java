@@ -1,38 +1,32 @@
 package com.flyscale.callsettings;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import global.Constant;
 
 
-/**
- *      // Call Barring
- 93     static final String SC_BAOC         = "33";
- 94     static final String SC_BAOIC        = "331";
- 95     static final String SC_BAOICxH      = "332";
- 96     static final String SC_BAIC         = "35";
- 97     static final String SC_BAICr        = "351";
- 98
- 99     static final String SC_BA_ALL       = "330";
- 100     static final String SC_BA_MO        = "333";
- 101     static final String SC_BA_MT        = "353";
+public class IPShortCutActivity extends Activity {
 
- */
-public class CallBlockingActivity extends Activity {
-
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "IPShortCutActivity";
     private ListView mMainTree;
     private String[] mMainData;
     private MainTreeAdapter mMainTreeAdapter;
+    private String ip;
+    private boolean ipDialEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +37,14 @@ public class CallBlockingActivity extends Activity {
     }
 
     private void initData() {
-        mMainData = getResources().getStringArray(R.array.call_block);
+        SharedPreferences sp = getSharedPreferences(Constant.SP,
+                Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
+        ip = sp.getString(Constant.IP_DIAL, null);
+        ipDialEnabled = sp.getBoolean(Constant.IP_DIAL_ENABLED, false);
+        mMainData = getResources().getStringArray(R.array.ipshortcuts);
+        for (int i = 0; i < mMainData.length; i++) {
+            Log.d(TAG, "mMainData=" + mMainData[i]);
+        }
     }
 
     @Override
@@ -56,7 +57,7 @@ public class CallBlockingActivity extends Activity {
         mMainTreeAdapter = new MainTreeAdapter();
         mMainTree.setAdapter(mMainTreeAdapter);
         TextView title = (TextView) findViewById(R.id.title);
-        title.setText(getResources().getString(R.string.app_name));
+        title.setText(getResources().getString(R.string.ip_shortcut));
 
         mMainTree.setDivider(null);
         mMainTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,32 +69,18 @@ public class CallBlockingActivity extends Activity {
     }
 
     private void handlePosition(int position) {
-        Intent intent = new Intent(this, OpenCloseActivity.class);
-        switch (position) {
-            case 0:
-                intent.putExtra(Constant.GSM_TYPE, Constant.GSM_CALL_BLOCK_BA_MO);
-                break;
-            case 1:
-                intent.putExtra(Constant.GSM_TYPE, Constant.GSM_CALL_BLOCK_BAIC);
-                break;
-            case 2:
-                intent.putExtra(Constant.GSM_TYPE, Constant.GSM_CALL_BLOCK_BAICR);
-                break;
-            case 3:
-                intent.putExtra(Constant.GSM_TYPE, Constant.GSM_CALL_BLOCK_BAOIC);
-                break;
-            case 4:
-                intent.putExtra(Constant.GSM_TYPE, Constant.GSM_CALL_BLOCK_BAOICXH);
-                break;
-            case 5:
-                break;
-        }
-        startActivityForResult(intent, position);
+        SharedPreferences sp = getSharedPreferences(Constant.SP,
+                Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Constant.IP_DIAL, mMainData[position]);
+        editor.commit();
+        finish();
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_MENU:
                 int selectedItemPosition = mMainTree.getSelectedItemPosition();
                 handlePosition(selectedItemPosition);
@@ -124,9 +111,34 @@ public class CallBlockingActivity extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView item = (TextView) getLayoutInflater().inflate(R.layout.item, parent, false);
-            item.setText(mMainData[position % mMainData.length]);
-            return item;
+
+            View view = null;
+            if (convertView != null) {
+                view = convertView;
+            } else {
+                view = getLayoutInflater().inflate(R.layout.item_contacts, parent, false);
+            }
+
+            ImageView icon = (ImageView) view.findViewById(R.id.contact_icon);
+            icon.setVisibility(View.GONE);
+            TextView tv = (TextView) view.findViewById(R.id.tv);
+            CheckBox cb = (CheckBox) view.findViewById(R.id.cb);
+            if (ipDialEnabled) {
+                if (TextUtils.equals(ip, mMainData[position])) {
+                    cb.setChecked(true);
+                } else {
+                    cb.setChecked(false);
+                }
+            }else {
+                if (position == 0) {
+                    cb.setChecked(true);
+                }else {
+                    cb.setChecked(false);
+                }
+            }
+            tv.setText(mMainData[position]);
+
+            return view;
         }
     }
 }

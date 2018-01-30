@@ -39,7 +39,8 @@ public class MainActivity extends Activity {
         mActivities = new Class[mMainData.length];
         mActivities[0] = CallForwardingActivity.class;
         mActivities[1] = OpenCloseActivity.class;
-        mActivities[2] = CallBlockingActivity.class;
+        mActivities[2] = DelayToDialActivity.class;
+        mActivities[3] = IPShortCutActivity.class;
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,29 +41,35 @@ public class OpenCloseActivity extends Activity {
         mMainData = getResources().getStringArray(R.array.open_close);
         mActivities = new Class[mMainData.length];
         mGsmType = getIntent().getStringExtra(Constant.GSM_TYPE);
-        String gsmCode = "";
+        String si = getIntent().getStringExtra(Constant.SI);
+        si = "*" + "1234";
+        String sc = "";
         if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BA_ALL)) {
-            gsmCode = Constant.SC_BA_ALL;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BA_MO)) {
-            gsmCode = Constant.SC_BA_MO;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BA_MT)) {
-            gsmCode = Constant.SC_BA_MT;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAIC)) {
-            gsmCode = Constant.SC_BAIC;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAICR)) {
-            gsmCode = Constant.SC_BAICr;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAOC)) {
-            gsmCode = Constant.SC_BAOC;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAOIC)) {
-            gsmCode = Constant.SC_BAOIC;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAOICXH)) {
-            gsmCode = Constant.SC_BAOICxH;
-        }else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_WAITING)) {
-            gsmCode = Constant.SC_WAIT;
+            sc = Constant.SC_BA_ALL;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BA_MO)) {
+            sc = Constant.SC_BA_MO;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BA_MT)) {
+            sc = Constant.SC_BA_MT;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAIC)) {
+            sc = Constant.SC_BA_MT;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAICR)) {
+            sc = Constant.SC_BAICr;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAOC)) {
+            sc = Constant.SC_BAOC;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAOIC)) {
+            sc = Constant.SC_BAOIC;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_BLOCK_BAOICXH)) {
+            sc = Constant.SC_BAOICxH;
+        } else if (TextUtils.equals(mGsmType, Constant.GSM_CALL_WAITING)) {
+            sc = Constant.SC_WAIT;
+            si = "";
         }
-        mActivate = Constant.ACTION_ACTIVATE + gsmCode + Constant.END_OF_USSD_COMMAND;
-        mDeactivate = Constant.ACTION_DEACTIVATE + gsmCode + Constant.END_OF_USSD_COMMAND;
-        mInterrogate = Constant.ACTION_INTERROGATE + gsmCode + Constant.END_OF_USSD_COMMAND;
+        mActivate = Constant.ACTION_ACTIVATE + sc + si + Constant.END_OF_USSD_COMMAND;
+        mDeactivate = Constant.ACTION_DEACTIVATE + sc + si + Constant.END_OF_USSD_COMMAND;
+        mInterrogate = Constant.ACTION_INTERROGATE + sc + si + Constant.END_OF_USSD_COMMAND;
+        Log.d(TAG, "mActivate=" + mActivate + ",mDeactivate=" + mDeactivate + ",mInterrogate=" +
+                mInterrogate);
+
     }
 
     @Override
