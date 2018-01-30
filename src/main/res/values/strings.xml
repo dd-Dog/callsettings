@@ -62,15 +62,16 @@
     <string name="call_forwarding_no_reply">Call forwarding on no reply</string>
     <string name="out_of_reach">Out of Reach</string>
     <string name="cancel_all">Cancel all</string>
-
+    <string name="delay_to_dial">Delay To Dial</string>
+    <string name="ip_shortcut">IP </string>
 
     <array name="main">
         <item>1.Call Forwarding</item>
         <item>2.Call Waiting</item>
-        <item>3.Call Blocking</item>
-        <item>4.Hide ID</item>
-        <item>5.Delay to Dial</item>
-        <item>6.IP Shortcut ey</item>
+        <!--<item>3.Call Blocking</item>-->
+        <!--<item>4.Hide ID</item>-->
+        <item>3.Delay to Dial</item>
+        <item>4.IP Shortcut ey</item>
     </array>
 
     <array name="call_forwarding">
@@ -95,5 +96,23 @@
         <item>5.Make Calls in Roaming</item>
         <item>6.Cancel all Blocks</item>
     </array>
+
+
+    <array name="delaytodial">
+        <item>Deactivate</item>
+        <item>3s</item>
+        <item>5s</item>
+        <item>7s</item>
+        <item>9s</item>
+    </array>
+
+    <string-array name="ipshortcuts">
+        <item>Close</item>
+        <item>17951</item>
+        <item>17911</item>
+        <item>17909</item>
+        <item>17931</item>
+        <item>193</item>
+    </string-array>
 
 </resources>
