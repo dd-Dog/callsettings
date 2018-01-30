@@ -1,6 +1,7 @@
 package com.flyscale.callsettings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 public class CallForwardingActivity extends Activity {
 
     private static final String TAG = "CallForwardingActivity";
+    private Context mContext = this;
     private ListView mCallForwardTree;
     private String[] mCallForwardData;
     private CallForwardingTreeAdapter mCallForwardingTreeAdapter;
@@ -56,8 +58,14 @@ public class CallForwardingActivity extends Activity {
         mCallForwardTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CallForwardingActivity.this, mActivities[position]);
-                startActivityForResult(intent, position);
+                if (SimCardState.ishasSimCard(mContext)){
+                    Intent intent = new Intent(CallForwardingActivity.this, mActivities[position]);
+                    startActivityForResult(intent, position);
+                }else {
+                    Intent intent = new Intent(CallForwardingActivity.this, NoSimCardActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
     }

@@ -66,6 +66,11 @@
     <string name="cancel_all">取消全部转移</string>
     <string name="call_forwarding_all_number">设置无条件转移号码</string>
     <string name="call_forwarding_busy_number">设置遇忙转移号码</string>
+    <string name="call_forwarding_no_reply_number">设置无人接听转移号码</string>
+    <string name="call_forwarding_reach_number">设置无法到达转移号码</string>
+    <string name="yes_no_cancel_all">是否取消全部转移</string>
+    <string name="setting">设置中...</string>
+    <string name="no_simcard">请先插入SIM卡</string>
 
     <array name="main">
         <item>1.呼叫转移</item>

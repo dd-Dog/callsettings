@@ -37,7 +37,7 @@ public class OpenCloseActivity extends Activity {
     }
 
     private void initData() {
-        mMainData = getResources().getStringArray(R.array.openclose);
+        mMainData = getResources().getStringArray(R.array.open_close);
         mActivities = new Class[mMainData.length];
         mGsmType = getIntent().getStringExtra(Constant.GSM_TYPE);
         String gsmCode = "";
