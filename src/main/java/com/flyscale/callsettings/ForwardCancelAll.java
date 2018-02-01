@@ -43,7 +43,9 @@ public class ForwardCancelAll extends Activity {
         return super.onKeyUp(keyCode, event);
     }
 
-
-
-
+    @Override
+    protected void onPause() {
+        finish();
+        super.onPause();
+    }
 }
