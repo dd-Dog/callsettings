@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import global.Constant;
+import com.flyscale.callsettings.global.Constant;
 
 
 public class MainActivity extends Activity {
