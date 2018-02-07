@@ -77,8 +77,12 @@
     <string name="no_simcard">请先插入SIM卡</string>
     <string name="delay_to_dial">延时拨号</string>
 
+<<<<<<< HEAD
     <string name="ip_shortcut">IP拨号</string>
     <string name="opening">设置中 ...</string>
+=======
+    <string name="ip_shortcut">IP一键通</string>
+>>>>>>> e93baa2cf7588ed2d504f02c8c1ed23a9829c574
 
     <array name="main">
         <item>1.呼叫转移</item>

@@ -73,6 +73,7 @@ public class IPShortCutActivity extends Activity {
                 Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(Constant.IP_DIAL, mMainData[position]);
+        editor.putBoolean(Constant.IP_DIAL_ENABLED, position == 0 ? false : true);
         editor.commit();
         finish();
     }
@@ -129,10 +130,10 @@ public class IPShortCutActivity extends Activity {
                 } else {
                     cb.setChecked(false);
                 }
-            }else {
+            } else {
                 if (position == 0) {
                     cb.setChecked(true);
-                }else {
+                } else {
                     cb.setChecked(false);
                 }
             }

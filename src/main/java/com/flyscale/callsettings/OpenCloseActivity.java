@@ -83,7 +83,9 @@ public class OpenCloseActivity extends Activity {
         mMainTree.setAdapter(mMainTreeAdapter);
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(getResources().getString(R.string.app_name));
-
+        if (TextUtils.equals(mGsmType, Constant.GSM_CALL_WAITING)) {
+            title.setText(getResources().getString(R.string.call_waiting));
+        }
         mMainTree.setDivider(null);
         mMainTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

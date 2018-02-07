@@ -23,6 +23,7 @@ public class PhoneStateReceiver extends BroadcastReceiver {
         boolean enabled = sp.getBoolean(Constant.IP_DIAL_ENABLED, false);
         Log.e("PhoneStateReceiver", "ip=" + ip);
         if (TextUtils.isEmpty(ip) || !enabled) return;
-        setResultData(ip + number);
+//        setResultData(ip + number);
+        setResultData(number);
     }
 }
