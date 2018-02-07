@@ -78,6 +78,7 @@
     <string name="delay_to_dial">延时拨号</string>
 
     <string name="ip_shortcut">IP拨号</string>
+    <string name="opening">设置中 ...</string>
 
     <array name="main">
         <item>1.呼叫转移</item>

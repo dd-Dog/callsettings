@@ -64,6 +64,7 @@
     <string name="cancel_all">Cancel all</string>
     <string name="delay_to_dial">Delay To Dial</string>
     <string name="ip_shortcut">IP </string>
+    <string name="opening">Settings ...</string>
 
     <array name="main">
         <item>1.Call Forwarding</item>

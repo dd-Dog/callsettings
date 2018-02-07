@@ -1,10 +1,7 @@
 package com.flyscale.callsettings;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,17 +19,15 @@ public class ForwardAllOpen extends Activity{
     private String TAG = "ForwardAllOpen";
     private EditText etNumber;
     private String mNumber;
-    private SharedPreferences sp;
-    private SharedPreferences.Editor editor;
+
+    private TextView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forward_all_open);
         etNumber = (EditText) findViewById(R.id.et_all_open_number);
-        sp = getSharedPreferences("callsettings", Context
-                .MODE_PRIVATE);
-        editor = sp.edit();
+        back = (TextView) findViewById(R.id.back);
 
         etNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -48,6 +43,11 @@ public class ForwardAllOpen extends Activity{
             @Override
             public void afterTextChanged(Editable editable) {
                 mNumber = etNumber.getText().toString();
+                if (mNumber.length() > 0){
+                    back.setText(getResources().getString(R.string.clear));
+                }else {
+                    back.setText(getResources().getString(R.string.back));
+                }
 
             }
         });
@@ -61,12 +61,9 @@ public class ForwardAllOpen extends Activity{
             case 82:
             case 23:
                 if (mNumber != null && mNumber.length() > 0){
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_CALL);
-                    intent.setData(Uri
-                            .parse("tel:**21*" + mNumber + "%23"));
-                    editor.putString("forward_all_open", mNumber);
-                    editor.commit();
+                    Intent intent = new Intent(this , OpenActivity.class);
+                    intent.putExtra("number" , mNumber);
+                    intent.putExtra("action" , "all_open");
                     startActivity(intent);
                     finish();
                 }else {

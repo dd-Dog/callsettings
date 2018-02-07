@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Administrator on 2018/1/29 0029.
@@ -22,17 +23,14 @@ public class ForwardBusyOpen extends Activity{
     private String TAG = "ForwardBusyOpen";
     private EditText etNumber;
     private String mNumber;
-    private SharedPreferences sp;
-    private SharedPreferences.Editor editor;
+    private TextView back;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forward_busy_open);
         etNumber = (EditText) findViewById(R.id.et_busy_open_number);
-        sp = getSharedPreferences("callsettings", Context
-                .MODE_PRIVATE);
-        editor = sp.edit();
+        back = (TextView) findViewById(R.id.back);
 
         etNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -48,6 +46,11 @@ public class ForwardBusyOpen extends Activity{
             @Override
             public void afterTextChanged(Editable editable) {
                 mNumber = etNumber.getText().toString();
+                if (mNumber.length() > 0){
+                    back.setText(getResources().getString(R.string.clear));
+                }else {
+                    back.setText(getResources().getString(R.string.back));
+                }
 
             }
         });
@@ -60,12 +63,9 @@ public class ForwardBusyOpen extends Activity{
             case 82:
             case 23:
                 if(mNumber != null && mNumber.length() >0){
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_CALL);
-                    intent.setData(Uri
-                          .parse("tel:**67*" + mNumber + "%23"));
-                    editor.putString("forward_busy_open", mNumber);
-                    editor.commit();
+                    Intent intent = new Intent(this , OpenActivity.class);
+                    intent.putExtra("number" , mNumber);
+                    intent.putExtra("action" , "busy_open");
                     startActivity(intent);
                     finish();
                 }else {

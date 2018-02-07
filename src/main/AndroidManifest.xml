@@ -44,6 +44,7 @@
         <activity android:name=".NoSimCardActivity"/>
         <activity android:name=".DelayToDialActivity"/>
         <activity android:name=".IPShortCutActivity"/>
+        <activity android:name=".OpenActivity"/>
 
         <receiver android:name=".receiver.PhoneStateReceiver">
             <intent-filter>
